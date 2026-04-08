@@ -8,7 +8,7 @@ exact inner-product search over the index.
 Why this design
 ---------------
 * **Bi-encoder, not cross-encoder**, because we need millisecond-level
-  retrieval over 57k documents -- a cross-encoder would require one BERT
+  retrieval over 57k documents, but cross-encoder would require one BERT
   forward pass per (query, document) pair.
 * **FAISS Flat (exact) inner-product index**, because 57k vectors easily
   fit in memory and exact search avoids any recall loss from approximation.
@@ -68,25 +68,20 @@ class DenseRetriever:
         self.docids = list(corpus.keys())
         texts = [corpus[d] for d in self.docids]
 
-        print(f"[dense] Encoding {len(texts):,} documents on {self.model.device} ...")
         embeddings = self.model.encode(
             texts,
             batch_size=batch_size,
             convert_to_numpy=True,
-            normalize_embeddings=True,        
+            normalize_embeddings=True,
             show_progress_bar=show_progress_bar,
         ).astype(np.float32)
-        print(f"[dense] Encoded shape: {embeddings.shape}")
 
         self.index = faiss.IndexFlatIP(self.dim)
         self.index.add(embeddings)
-        print(f"[dense] FAISS index built with {self.index.ntotal:,} vectors.")
 
-    
         faiss.write_index(self.index, str(index_dir / self.INDEX_FILENAME))
         with (index_dir / self.DOCIDS_FILENAME).open("wb") as f:
             pickle.dump(self.docids, f)
-        print(f"[dense] Saved index to {index_dir}")
 
     def load_index(self, index_dir: Path = FAISS_INDEX_DIR) -> None:
         index_dir = Path(index_dir)

@@ -70,8 +70,8 @@ class BM25Retriever:
 
 
 def _sanitise(query: str) -> str:
-    """Strip characters that confuse Terrier's query parser.
+    """Delete characters that confuse Terrier's query parser.
 
-    Terrier treats ``?``, ``!``, ``:``, etc. as operators. 
+    Because Perrier treats ?,!,: etc. as operators. 
     """
     return "".join(ch if ch.isalnum() or ch.isspace() else " " for ch in query).strip()
