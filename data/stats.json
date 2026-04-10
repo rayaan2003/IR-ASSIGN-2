@@ -1,0 +1,59 @@
+{
+  "dataset": "beir/fiqa/test",
+  "corpus": {
+    "n_docs": 57638,
+    "empty_docs": 38,
+    "empty_doc_ids_sample": [
+      "7915",
+      "12229",
+      "14135",
+      "33445",
+      "40982"
+    ],
+    "docs_with_html": 25,
+    "html_doc_ids_sample": [
+      "30800",
+      "72730",
+      "127434",
+      "162389",
+      "187525"
+    ],
+    "docs_with_urls": 5061,
+    "duplicate_texts": 2,
+    "char_length": {
+      "min": 6,
+      "max": 16990,
+      "mean": 767.7,
+      "median": 522.0
+    },
+    "word_length": {
+      "min": 1,
+      "max": 2973,
+      "mean": 133.0,
+      "median": 91.0,
+      "p95": 368.0
+    }
+  },
+  "queries": {
+    "n_queries": 648,
+    "word_length": {
+      "min": 2,
+      "max": 31,
+      "mean": 10.9,
+      "median": 10.0
+    }
+  },
+  "qrels": {
+    "n_queries_with_qrels": 648,
+    "total_judgements": 1706,
+    "rel_per_query": {
+      "min": 1,
+      "max": 15,
+      "mean": 2.6,
+      "median": 2.0
+    },
+    "grade_distribution": {
+      "1": 1706
+    }
+  }
+}
