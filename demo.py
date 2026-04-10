@@ -25,7 +25,7 @@ st.set_page_config(
 st.markdown(
     """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
 .finlens-header {
@@ -35,6 +35,7 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 .finlens-logo {
     font-size: 2.8rem;
     font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
     background: linear-gradient(135deg, #1a73e8, #00c9a7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -486,9 +487,6 @@ def main():
         with st.expander("Advanced LLM settings"):
             st.text_input("API Base URL", value="https://api.openai.com/v1", key="api_base_url")
             st.text_input("Model", value="gpt-4o-mini", key="llm_model")
-        st.divider()
-        st.caption("Built for ECS736P/U Information Retrieval")
-        st.caption("FiQA corpus — 57,638 financial passages")
 
     #  Search bar 
     col_l, col_search, col_r = st.columns([1, 6, 1])
@@ -506,8 +504,8 @@ def main():
         selected = st.selectbox(
             "Choose retrieval pipeline",
             [
-                "Pipeline A — Hybrid (BM25 + Dense + RRF + CE)",
-                "Pipeline B — Query Expansion (BM25 + Bo1 + CE)",
+                "Pipeline A: Hybrid (BM25 + Dense + RRF + CE)",
+                "Pipeline B: Query Expansion (BM25 + Bo1 + CE)",
             ],
             key="pipeline_select",
         )
@@ -620,7 +618,7 @@ def main():
         col_a, col_b = st.columns(2)
 
         with col_a:
-            st.markdown("#### Pipeline A — Hybrid")
+            st.markdown("#### Pipeline A: Hybrid")
             render_badges(result_a["badges"])
             render_timings(result_a["timings"])
             docs_a = get_result_docs(result_a["results"], corpus)
@@ -629,7 +627,7 @@ def main():
                               result_a["rank_maps"])
 
         with col_b:
-            st.markdown("#### Pipeline B — Expansion")
+            st.markdown("#### Pipeline B: Expansion")
             render_badges(result_b["badges"])
             render_timings(result_b["timings"])
             if "expanded_query" in result_b:
