@@ -106,7 +106,7 @@ IR_Search_Engine/
 │   └── evaluation.py      # pytrec_eval metrics computation
 ├── data/                  # FiQA corpus, queries, qrels (generated)
 ├── indexes/               # BM25 and FAISS indexes (generated)
-└── results/               # Evaluation outputs, presentation files
+└── results/               # Experiment log with metrics for all configurations
 ```
 
 ## Models

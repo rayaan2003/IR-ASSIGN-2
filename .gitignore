@@ -1,5 +1,5 @@
-# Results (presentation files, generated outputs)
-results/
+# One-off analysis / presentation helper scripts
+scripts/
 
 # Python
 __pycache__/
